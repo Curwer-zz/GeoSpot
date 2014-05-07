@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/loginback"
     android:orientation="vertical" >
 
+    <RelativeLayout
+        android:layout_width="fill_parent"
+    	android:layout_height="fill_parent"
+    	android:background="@drawable/loginback"
+    	android:orientation="vertical" >
+    	
     <TextView
         android:id="@+id/loginErrorMsg"
         android:layout_width="fill_parent"
@@ -27,17 +32,6 @@
         android:inputType="textPassword"
         android:textColor="#000000"
         android:textSize="15dp" />
-
-    <Button
-        android:id="@+id/passres"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/login"
-        android:text="Forgot Password"
-        android:textColor="#000000"
-        android:textSize="13dp" />
 
     <ImageView
         android:id="@+id/imageView1"
@@ -68,18 +62,6 @@
     </EditText>
 
     <Button
-        android:id="@+id/registerbtn"
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:text="Register"
-        android:textColor="#000000"
-        android:textSize="16dp" />
-
-    <Button
         android:id="@+id/login"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
@@ -94,3 +76,5 @@
         android:textSize="13dp" />
 
 </RelativeLayout>
+
+</LinearLayout>

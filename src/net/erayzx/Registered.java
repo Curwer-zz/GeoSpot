@@ -1,25 +1,16 @@
 package net.erayzx;
 
-/**
- * Author :Raj Amal
- * Email  :raj.amalw@learn2crack.com
- * Website:www.learn2crack.com
- **/
 
+import java.util.HashMap;
+
+import net.erayzx.library.DatabaseHandler;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
-
-
-import java.util.HashMap;
-
-import net.erayzx.*;
-import net.erayzx.library.DatabaseHandler;
 
 public class Registered extends Activity {
 
@@ -35,7 +26,7 @@ public class Registered extends Activity {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         //Remove notification bar
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        //this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.registered);
 
@@ -59,10 +50,6 @@ public class Registered extends Activity {
         uname.setText(user.get("uname"));
         email.setText(user.get("email"));
         created_at.setText(user.get("created_at"));
-
-
-
-
 
 
         Button login = (Button) findViewById(R.id.login);

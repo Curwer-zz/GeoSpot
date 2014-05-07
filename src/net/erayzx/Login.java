@@ -1,261 +1,260 @@
 package net.erayzx;
 
-/**
- * Author :Raj Amal
- * Email  :raj.amalw@learn2crack.com
- * Website:www.learn2crack.com
- **/
-
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.os.AsyncTask;
-import net.erayzx.*;
-import net.erayzx.library.DatabaseHandler;
-import net.erayzx.library.UserFunctions;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
-
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import net.erayzx.library.DatabaseHandler;
+import net.erayzx.library.UserFunctions;
+import net.erayzx.tab.MainActivity;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.view.View;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
 public class Login extends Activity {
 
-    Button btnLogin;
-    Button Btnregister;
-    Button passreset;
-    EditText inputEmail;
-    EditText inputPassword;
-    private TextView loginErrorMsg;
-    /**
-     * Called when the activity is first created.
-     */
-    private static String KEY_SUCCESS = "success";
-    private static String KEY_UID = "uid";
-    private static String KEY_USERNAME = "uname";
-    private static String KEY_FIRSTNAME = "fname";
-    private static String KEY_LASTNAME = "lname";
-    private static String KEY_EMAIL = "email";
-    private static String KEY_CREATED_AT = "created_at";
+	Button btnLogin;
+	Button Btnregister;
+	Button passreset;
+	EditText inputEmail;
+	EditText inputPassword;
+	private TextView loginErrorMsg;
+	/**
+	 * Called when the activity is first created.
+	 */
+	private static String KEY_SUCCESS = "success";
+	private static String KEY_UID = "uid";
+	private static String KEY_USERNAME = "uname";
+	private static String KEY_FIRSTNAME = "fname";
+	private static String KEY_LASTNAME = "lname";
+	private static String KEY_EMAIL = "email";
+	private static String KEY_CREATED_AT = "created_at";
 
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        //Remove title bar
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		//Remove title bar
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        //Remove notification bar
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		//Remove notification bar
+		//this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        setContentView(R.layout.activity_login);
+		setContentView(R.layout.activity_login);
 
-        inputEmail = (EditText) findViewById(R.id.email);
-        inputPassword = (EditText) findViewById(R.id.pword);
-        Btnregister = (Button) findViewById(R.id.registerbtn);
-        btnLogin = (Button) findViewById(R.id.login);
-        passreset = (Button)findViewById(R.id.passres);
-        loginErrorMsg = (TextView) findViewById(R.id.loginErrorMsg);
+		inputEmail = (EditText) findViewById(R.id.email);
+		inputPassword = (EditText) findViewById(R.id.pword);
+		Btnregister = (Button) findViewById(R.id.registerbtn);
+		btnLogin = (Button) findViewById(R.id.login);
+		passreset = (Button)findViewById(R.id.passres);
+		loginErrorMsg = (TextView) findViewById(R.id.loginErrorMsg);
+		
+		//passreset.setVisibility(View.GONE);
 
-        passreset.setOnClickListener(new View.OnClickListener() {
-        public void onClick(View view) {
-        Intent myIntent = new Intent(view.getContext(), PasswordReset.class);
-        startActivityForResult(myIntent, 0);
-        finish();
-        }});
+		        passreset.setOnClickListener(new View.OnClickListener() {
+		        public void onClick(View view) {
+//		        Intent myIntent = new Intent(view.getContext(), PasswordReset.class);
+//		        startActivityForResult(myIntent, 0);
 
-
-        Btnregister.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(), Register.class);
-                startActivityForResult(myIntent, 0);
-                finish();
-             }});
-
-/**
- * Login button click event
- * A Toast is set to alert when the Email and Password field is empty
- **/
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View view) {
-
-                if (  ( !inputEmail.getText().toString().equals("")) && ( !inputPassword.getText().toString().equals("")) )
-                {
-                    NetAsync(view);
-                }
-                else if ( ( !inputEmail.getText().toString().equals("")) )
-                {
-                    Toast.makeText(getApplicationContext(),
-                            "Password field empty", Toast.LENGTH_SHORT).show();
-                }
-                else if ( ( !inputPassword.getText().toString().equals("")) )
-                {
-                    Toast.makeText(getApplicationContext(),
-                            "Email field empty", Toast.LENGTH_SHORT).show();
-                }
-                else
-                {
-                    Toast.makeText(getApplicationContext(),
-                            "Email and Password field are empty", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-    }
+		        Intent myIntent = new Intent(Login.this, MainActivity.class);
+		        startActivity(myIntent);
+		        }});
 
 
-/**
- * Async Task to check whether internet connection is working.
- **/
+		Btnregister.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View view) {
+				Intent myIntent = new Intent(view.getContext(), Register.class);
+				startActivityForResult(myIntent, 0);
+				finish();
+			}});
 
-    private class NetCheck extends AsyncTask<String,String,Boolean>
-    {
-        private ProgressDialog nDialog;
+		/**
+		 * Login button click event
+		 * A Toast is set to alert when the Email and Password field is empty
+		 **/
+		btnLogin.setOnClickListener(new View.OnClickListener() {
 
-        @Override
-        protected void onPreExecute(){
-            super.onPreExecute();
-            nDialog = new ProgressDialog(Login.this);
-            nDialog.setTitle("Checking Network");
-            nDialog.setMessage("Loading..");
-            nDialog.setIndeterminate(false);
-            nDialog.setCancelable(true);
-            nDialog.show();
-        }
-        /**
-         * Gets current device state and checks for working internet connection by trying Google.
-        **/
-        @Override
-        protected Boolean doInBackground(String... args){
+			public void onClick(View view) {
 
-
-
-            ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-            NetworkInfo netInfo = cm.getActiveNetworkInfo();
-            if (netInfo != null && netInfo.isConnected()) {
-                try {
-                    URL url = new URL("http://www.google.com");
-                    HttpURLConnection urlc = (HttpURLConnection) url.openConnection();
-                    urlc.setConnectTimeout(3000);
-                    urlc.connect();
-                    if (urlc.getResponseCode() == 200) {
-                        return true;
-                    }
-                } catch (MalformedURLException e1) {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
-                } catch (IOException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-            }
-            return false;
-
-        }
-        @Override
-        protected void onPostExecute(Boolean th){
-
-            if(th == true){
-                nDialog.dismiss();
-                new ProcessLogin().execute();
-            }
-            else{
-                nDialog.dismiss();
-                loginErrorMsg.setText("Error in Network Connection");
-            }
-        }
-    }
-
-    /**
-     * Async Task to get and send data to My Sql database through JSON respone.
-     **/
-    private class ProcessLogin extends AsyncTask<String, String, JSONObject> {
+				if (  ( !inputEmail.getText().toString().equals("")) && ( !inputPassword.getText().toString().equals("")) )
+				{
+					NetAsync(view);
+				}
+				else if ( ( !inputEmail.getText().toString().equals("")) )
+				{
+					Toast.makeText(getApplicationContext(),
+							"Password field empty", Toast.LENGTH_SHORT).show();
+				}
+				else if ( ( !inputPassword.getText().toString().equals("")) )
+				{
+					Toast.makeText(getApplicationContext(),
+							"Email field empty", Toast.LENGTH_SHORT).show();
+				}
+				else
+				{
+					Toast.makeText(getApplicationContext(),
+							"Email and Password field are empty", Toast.LENGTH_SHORT).show();
+				}
+			}
+		});
+	}
 
 
-        private ProgressDialog pDialog;
+	/**
+	 * Async Task to check whether internet connection is working.
+	 **/
 
-        String email,password;
+	private class NetCheck extends AsyncTask<String,String,Boolean>
+	{
+		private ProgressDialog nDialog;
 
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
+		@Override
+		protected void onPreExecute(){
+			super.onPreExecute();
+			nDialog = new ProgressDialog(Login.this);
+			nDialog.setTitle("Checking Network");
+			nDialog.setMessage("Loading..");
+			nDialog.setIndeterminate(false);
+			nDialog.setCancelable(true);
+			nDialog.show();
+		}
+		/**
+		 * Gets current device state and checks for working internet connection by trying Google.
+		 **/
+		@Override
+		protected Boolean doInBackground(String... args){
 
-            inputEmail = (EditText) findViewById(R.id.email);
-            inputPassword = (EditText) findViewById(R.id.pword);
-            email = inputEmail.getText().toString();
-            password = inputPassword.getText().toString();
-            pDialog = new ProgressDialog(Login.this);
-            pDialog.setTitle("Contacting Servers");
-            pDialog.setMessage("Logging in ...");
-            pDialog.setIndeterminate(false);
-            pDialog.setCancelable(true);
-            pDialog.show();
-        }
 
-        @Override
-        protected JSONObject doInBackground(String... args) {
 
-            UserFunctions userFunction = new UserFunctions();
-            JSONObject json = userFunction.loginUser(email, password);
-            return json;
-        }
+			ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+			NetworkInfo netInfo = cm.getActiveNetworkInfo();
+			if (netInfo != null && netInfo.isConnected()) {
+				try {
+					URL url = new URL("http://www.google.com");
+					HttpURLConnection urlc = (HttpURLConnection) url.openConnection();
+					urlc.setConnectTimeout(3000);
+					urlc.connect();
+					if (urlc.getResponseCode() == 200) {
+						return true;
+					}
+				} catch (MalformedURLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			return false;
 
-        @Override
-        protected void onPostExecute(JSONObject json) {
-            try {
-               if (json.getString(KEY_SUCCESS) != null) {
+		}
+		@Override
+		protected void onPostExecute(Boolean th){
 
-                    String res = json.getString(KEY_SUCCESS);
+			if(th == true){
+				nDialog.dismiss();
+				new ProcessLogin().execute();
+			}
+			else{
+				nDialog.dismiss();
+				loginErrorMsg.setText("Error in Network Connection");
+			}
+		}
+	}
 
-                    if(Integer.parseInt(res) == 1){
-                        pDialog.setMessage("Loading User Space");
-                        pDialog.setTitle("Getting Data");
-                        DatabaseHandler db = new DatabaseHandler(getApplicationContext());
-                        JSONObject json_user = json.getJSONObject("user");
-                        /**
-                         * Clear all previous data in SQlite database.
-                         **/
-                        UserFunctions logout = new UserFunctions();
-                        logout.logoutUser(getApplicationContext());
-                        db.addUser(json_user.getString(KEY_FIRSTNAME),json_user.getString(KEY_LASTNAME),json_user.getString(KEY_EMAIL),json_user.getString(KEY_USERNAME),json_user.getString(KEY_UID),json_user.getString(KEY_CREATED_AT));
-                       /**
-                        *If JSON array details are stored in SQlite it launches the User Panel.
-                        **/
-                        Intent upanel = new Intent(getApplicationContext(), Main.class);
-                        upanel.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        pDialog.dismiss();
-                        startActivity(upanel);
-                        /**
-                         * Close Login Screen
-                         **/
-                        finish();
-                    }else{
+	/**
+	 * Async Task to get and send data to My Sql database through JSON respone.
+	 **/
+	private class ProcessLogin extends AsyncTask<String, String, JSONObject> {
 
-                        pDialog.dismiss();
-                        loginErrorMsg.setText("Incorrect username/password");
-                    }
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-       }
-    }
-    public void NetAsync(View view){
-        new NetCheck().execute();
-    }
+
+		private ProgressDialog pDialog;
+
+		String email,password;
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+
+			inputEmail = (EditText) findViewById(R.id.email);
+			inputPassword = (EditText) findViewById(R.id.pword);
+			email = inputEmail.getText().toString();
+			password = inputPassword.getText().toString();
+			pDialog = new ProgressDialog(Login.this);
+			pDialog.setTitle("Contacting Servers");
+			pDialog.setMessage("Logging in ...");
+			pDialog.setIndeterminate(false);
+			pDialog.setCancelable(true);
+			pDialog.show();
+		}
+
+		@Override
+		protected JSONObject doInBackground(String... args) {
+
+			UserFunctions userFunction = new UserFunctions();
+			JSONObject json = userFunction.loginUser(email, password);
+			return json;
+		}
+
+		@Override
+		protected void onPostExecute(JSONObject json) {
+			try {
+				if (json.getString(KEY_SUCCESS) != null) {
+
+					String res = json.getString(KEY_SUCCESS);
+
+					if(Integer.parseInt(res) == 1){
+						pDialog.setMessage("Loading User Space");
+						pDialog.setTitle("Getting Data");
+						DatabaseHandler db = new DatabaseHandler(getApplicationContext());
+						JSONObject json_user = json.getJSONObject("user");
+						/**
+						 * Clear all previous data in SQlite database.
+						 **/
+						UserFunctions logout = new UserFunctions();
+						logout.logoutUser(getApplicationContext());
+						db.addUser(json_user.getString(KEY_FIRSTNAME),json_user.getString(KEY_LASTNAME),json_user.getString(KEY_EMAIL),json_user.getString(KEY_USERNAME),json_user.getString(KEY_UID),json_user.getString(KEY_CREATED_AT));
+						/**
+						 *If JSON array details are stored in SQlite it launches the User Panel.
+						 **/
+						Intent upanel = new Intent(getApplicationContext(), Main.class);
+						upanel.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+						pDialog.dismiss();
+						startActivity(upanel);
+						/**
+						 * Close Login Screen
+						 **/
+						finish();
+					}else{
+
+						pDialog.dismiss();
+						loginErrorMsg.setText("Incorrect username/password");
+						passreset.setVisibility(View.VISIBLE);
+					}
+				}
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	public void NetAsync(View view){
+		new NetCheck().execute();
+	}
 }
