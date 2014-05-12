@@ -7,6 +7,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 
+import net.erayzx.R;
 import net.erayzx.library.DatabaseHandler;
 import net.erayzx.library.UserFunctions;
 

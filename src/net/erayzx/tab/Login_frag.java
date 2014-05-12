@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import net.erayzx.cam.CameraController;
 import net.erayzx.library.DatabaseHandler;
 import net.erayzx.library.UserFunctions;
 import org.json.JSONException;
@@ -24,8 +25,7 @@ import android.widget.Toast;
 public class Login_frag extends Fragment {
 	
 	Button btnLogin;
-	Button Btnregister;
-	Button passreset;
+	Button cam;
 	EditText inputEmail;
 	EditText inputPassword;
 	View login;
@@ -47,10 +47,19 @@ public class Login_frag extends Fragment {
 		
 		inputEmail = (EditText)login.findViewById(R.id.email);
 		inputPassword = (EditText)login.findViewById(R.id.pword);
-//		Btnregister = (Button)login.findViewById(R.id.registerbtn);
 		btnLogin = (Button)login.findViewById(R.id.login);
-//		passreset = (Button)login.findViewById(R.id.passres);
+		cam = (Button)login.findViewById(R.id.testCam);
 		loginErrorMsg = (TextView)login.findViewById(R.id.loginErrorMsg);
+		
+		cam.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent camera = new Intent(getActivity().getApplicationContext(), CameraController.class);
+				startActivity(camera);
+			}
+		});
 		
 		/**
 		 * Login button click event
@@ -151,7 +160,6 @@ public class Login_frag extends Fragment {
 
 						pDialog.dismiss();
 						loginErrorMsg.setText("Incorrect username/password");
-						passreset.setVisibility(View.VISIBLE);
 					}
 				}
 			} catch (JSONException e) {

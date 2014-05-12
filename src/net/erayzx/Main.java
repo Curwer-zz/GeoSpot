@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import net.erayzx.library.DatabaseHandler;
 import net.erayzx.library.UserFunctions;
+import net.erayzx.tab.MainActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 public class Main extends Activity {
     Button btnLogout;
     Button changepas;
+    Button cam;
 
 
 
@@ -36,6 +38,7 @@ public class Main extends Activity {
 
         changepas = (Button) findViewById(R.id.btchangepass);
         btnLogout = (Button) findViewById(R.id.logout);
+        cam = (Button)findViewById(R.id.Cam);
 
         DatabaseHandler db = new DatabaseHandler(getApplicationContext());
 
@@ -68,12 +71,22 @@ public class Main extends Activity {
 
                 UserFunctions logout = new UserFunctions();
                 logout.logoutUser(getApplicationContext());
-                Intent login = new Intent(getApplicationContext(), Login.class);
+                Intent login = new Intent(getApplicationContext(), MainActivity.class);
                 login.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(login);
                 finish();
             }
         });
+        
+        cam.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+//				Intent camera = new Intent(getApplicationContext(), ShowCamera.class);
+//				startActivity(camera);
+			}
+		});
 /**
  * Sets user first name and last name in text view.
  **/

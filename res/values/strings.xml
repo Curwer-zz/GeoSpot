@@ -13,5 +13,9 @@
     <string name="tab3">Reset Password</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_yolo">Yolo</string>
+    <string name="intro">Capture a picture to crop!</string>
+    <string name="picture">Picture</string>
+    <string name="capture">Launch Camera</string>
+    <string name="title_activity_signed_in_tab">SignedInTab</string>
 
 </resources>

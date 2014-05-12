@@ -52,4 +52,12 @@
             android:textColor="#50FFFFFF" 
             android:textAlignment="center"/>
 
+    <Button
+        android:id="@+id/Cam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="Cam" />
+
 </RelativeLayout>

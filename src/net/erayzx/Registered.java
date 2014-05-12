@@ -4,6 +4,7 @@ package net.erayzx;
 import java.util.HashMap;
 
 import net.erayzx.library.DatabaseHandler;
+import net.erayzx.tab.MainActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -55,7 +56,7 @@ public class Registered extends Activity {
         Button login = (Button) findViewById(R.id.login);
         login.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(), Login.class);
+                Intent myIntent = new Intent(view.getContext(), MainActivity.class);
                 startActivityForResult(myIntent, 0);
                 finish();
             }

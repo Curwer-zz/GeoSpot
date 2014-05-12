@@ -1,6 +1,5 @@
 package net.erayzx.tab;
 
-import net.erayzx.Login;
 import net.erayzx.R;
 import net.erayzx.Registered;
 import android.os.Bundle;
@@ -67,19 +66,6 @@ public class Register_frag extends Fragment {
 		btnRegister = (Button)reg.findViewById(R.id.register);
 		registerErrorMsg = (TextView)reg.findViewById(R.id.register_error);
 
-		/**
-		 * Button which Switches back to the login screen on clicked
-		 **/
-
-		Button login = (Button)reg.findViewById(R.id.bktologin);
-		login.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View view) {
-				Intent myIntent = new Intent(view.getContext(), Login.class);
-				startActivityForResult(myIntent, 0);
-
-			}
-
-		});
 
 		/**
 		 * Register Button click event.

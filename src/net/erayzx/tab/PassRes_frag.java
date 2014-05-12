@@ -1,6 +1,5 @@
 package net.erayzx.tab;
 
-import net.erayzx.Login;
 
 import net.erayzx.R;
 import android.os.Bundle;
@@ -44,14 +43,6 @@ public class PassRes_frag extends Fragment {
 			Bundle saveInstanceState) {
 		passRes = inflater.inflate(R.layout.reset_frag, container, false);
 
-		Button login = (Button)passRes.findViewById(R.id.bktolog);
-		login.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View view) {
-				Intent myIntent = new Intent(view.getContext(), Login.class);
-				startActivityForResult(myIntent, 0);
-			}
-
-		});
 
 		email = (EditText)passRes.findViewById(R.id.forpas);
 		alert = (TextView)passRes.findViewById(R.id.alert);

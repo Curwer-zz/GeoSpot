@@ -3,6 +3,7 @@ package net.erayzx;
 
 import net.erayzx.library.DatabaseHandler;
 import net.erayzx.library.UserFunctions;
+import net.erayzx.tab.MainActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -83,7 +84,7 @@ public class Register extends Activity {
         Button login = (Button) findViewById(R.id.bktologin);
         login.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(), Login.class);
+                Intent myIntent = new Intent(view.getContext(), MainActivity.class);
                 startActivityForResult(myIntent, 0);
                 finish();
             }

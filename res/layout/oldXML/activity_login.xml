@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@drawable/loginback"
     android:orientation="vertical" >
 
-    <RelativeLayout
+    <TextView
+        android:id="@+id/loginErrorMsg"
         android:layout_width="fill_parent"
-    	android:layout_height="fill_parent"
-    	android:background="@drawable/login_back"
-    	android:orientation="vertical" >
+        android:layout_height="20dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/passres"
+        android:textColor="#000000" />
 
     <EditText
         android:id="@+id/pword"
@@ -24,6 +27,17 @@
         android:inputType="textPassword"
         android:textColor="#000000"
         android:textSize="15dp" />
+
+    <Button
+        android:id="@+id/passres"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/login"
+        android:text="Forgot Password"
+        android:textColor="#000000"
+        android:textSize="13dp" />
 
     <ImageView
         android:id="@+id/imageView1"
@@ -54,6 +68,18 @@
     </EditText>
 
     <Button
+        android:id="@+id/registerbtn"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:text="Register"
+        android:textColor="#000000"
+        android:textSize="16dp" />
+
+    <Button
         android:id="@+id/login"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
@@ -67,22 +93,4 @@
         android:background="@drawable/loginstyle"
         android:textSize="13dp" />
 
-    <TextView
-        android:id="@+id/loginErrorMsg"
-        android:layout_width="fill_parent"
-        android:layout_height="20dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:textColor="#000000" />
-
-    <Button
-        android:id="@+id/testCam"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/loginErrorMsg"
-        android:layout_alignParentRight="true"
-        android:text="Camera" />
-
 </RelativeLayout>
-
-</LinearLayout>
