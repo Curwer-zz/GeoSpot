@@ -16,6 +16,6 @@
     <string name="intro">Capture a picture to crop!</string>
     <string name="picture">Picture</string>
     <string name="capture">Launch Camera</string>
-    <string name="title_activity_signed_in_tab">SignedInTab</string>
+    <string name="title_activity_signed_in_tab">Logged in</string>
 
 </resources>

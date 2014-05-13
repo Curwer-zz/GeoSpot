@@ -3,6 +3,7 @@ package net.erayzx;
 
 import java.util.HashMap;
 
+import net.erayzx.cam.CameraController;
 import net.erayzx.library.DatabaseHandler;
 import net.erayzx.library.UserFunctions;
 import net.erayzx.tab.MainActivity;
@@ -83,8 +84,8 @@ public class Main extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-//				Intent camera = new Intent(getApplicationContext(), ShowCamera.class);
-//				startActivity(camera);
+				Intent camera = new Intent(getApplicationContext(), CameraController.class);
+				startActivity(camera);
 			}
 		});
 /**
